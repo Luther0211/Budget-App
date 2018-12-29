@@ -134,8 +134,7 @@ var UIController = (function() {
         current.value = ""
       })
 
-
-
+      fieldsArr[0].focus();
 
     },
 
@@ -168,21 +167,21 @@ var controller = (function(budgetCtrl, UICtrl) {
     var input, newItem;
 
     //1. Get input field Data
-     input = UIController.getInput()
+     input = UICtrl.getInput()
     console.log(input)
 
     //2. Add the item to budget controller
      newItem = budgetCtrl.addItem(input.type, input.description, input.value)
 
     //3. Add the item to the UI controller
-    UIController.addListItem(newItem, input.type);
+    UICtrl.addListItem(newItem, input.type);
 
     //4. Calculate the budget
 
 
     //5. Display de budget in UI
 
-    UIController.clearFields()
+    UICtrl.clearFields()
   }
 
   return {
