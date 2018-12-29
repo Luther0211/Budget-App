@@ -112,6 +112,33 @@ var UIController = (function() {
 
     },
 
+    clearFields: function() {
+      var fields, fieldsArr;
+
+      fields = document.querySelectorAll(`${DOMselectors.inputDesc}, ${DOMselectors.inputValue}`)
+
+      //--CLEAR INPUT VALUES--// (all methods work, just wanted to display all posible solutions for this situation)
+      // BASIC SOLUTION-----------------------------------------
+      // fields[0].value = ""
+      // fields[1].value = ""
+
+      // WITH FOR LOOP------------------------------------------
+      // for(var i = 0; i < fields.length; i++) {
+      //   fields[i].value = ""
+      // }
+
+      // MODIFING THE LIST TO AN ARRAY--------------------------
+      fieldsArr = Array.prototype.slice.call(fields);
+
+      fieldsArr.forEach(function(current, index, array) {
+        current.value = ""
+      })
+
+
+
+
+    },
+
     getDOMselectors: function() {
       return DOMselectors
     }
@@ -154,6 +181,8 @@ var controller = (function(budgetCtrl, UICtrl) {
 
 
     //5. Display de budget in UI
+
+    UIController.clearFields()
   }
 
   return {
