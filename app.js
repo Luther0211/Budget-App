@@ -77,8 +77,8 @@ var budgetController = (function() {
       return {
         budget: data.budget,
         totalInc: data.totals.inc,
-        totalInc: data.totals.exp,
-        totalInc: data.percentage
+        totalExp: data.totals.exp,
+        Percentage: data.percentage
       }
     },
 
