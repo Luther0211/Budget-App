@@ -107,7 +107,8 @@ var UIController = (function() {
     budgetLabel: ".budget__value",
     incomeLabel: ".budget__income--value",
     expenseLabel: ".budget__expenses--value",
-    percentageLabel: ".budget__expenses--percentage"
+    percentageLabel: ".budget__expenses--percentage",
+    container: ".container"
   }
 
   return {
@@ -124,7 +125,7 @@ var UIController = (function() {
       //1 create HTML string w/ placeholder text
       if( type === 'inc') {
         element = DOMselectors.incomeContainer
-        html = `<div class="item clearfix" id="income-${obj.id}">
+        html = `<div class="item clearfix" id="inc-${obj.id}">
                     <div class="item__description">${obj.description}</div>
                     <div class="right clearfix">
                         <div class="item__value">${obj.value}</div>
@@ -135,7 +136,7 @@ var UIController = (function() {
                 </div>`
       } else if(type === 'exp') {
         element = DOMselectors.expenseContainer
-        html = `<div class="item clearfix" id="expense-${obj.id}">
+        html = `<div class="item clearfix" id="exp-${obj.id}">
              <div class="item__description">${obj.description}</div>
              <div class="right clearfix">
                  <div class="item__value">${obj.value}</div>
@@ -214,7 +215,10 @@ var controller = (function(budgetCtrl, UICtrl) {
       if (e.keyCode === 13 || e.which === 13) {
         ctrlAddItem();
       }
-    })
+    });
+
+    document.querySelector(DOM.container).addEventListener('click', ctrlDeleteItem)
+
   }
 
   var updateBudget = function() {
@@ -249,7 +253,29 @@ var controller = (function(budgetCtrl, UICtrl) {
      //5. calculate & update budget
      updateBudget()
     }
-    
+  }
+
+  var ctrlDeleteItem = function (e) {
+    var itemID, splitID, type, ID;
+
+    itemID = e.target.parentNode.parentNode.parentNode.parentNode.id
+
+    if(itemID) {
+      splitID = itemID.split('-');
+      type = splitID[0];
+      ID = splitID[1];
+
+      //1 delete item from data structure
+
+
+      //2 delete item from UI
+
+
+      //3 update and show new budget
+      
+
+    }
+
   }
 
   return {
