@@ -150,7 +150,35 @@ var UIController = (function() {
     percentageLabel: ".budget__expenses--percentage",
     container: ".container",
     expensesPercentageLabel: ".item__percentage"
-  }
+  };
+
+  var formatNumber =  function(num, type) {
+    var numSplit, int, dec;
+    //1. + || - at the start of the number
+    //2. exactly 2 decimal points
+    //3. a comma separating the thousands
+    
+    // ex: 2310.4567 -> + 2,310.46
+    //ex2: 2000 -> + 2,000.00
+
+    num = Math.abs(num)
+    num = num.toFixed(2);
+
+    numSplit = num.split('.')
+
+    int = numSplit[0]
+
+    if(int.length > 3) {
+      int = int.substr(0, int.length - 3) + ',' + int.substr(int.length - 3, 3);
+    }
+
+    dec = numSplit[1];
+
+    
+    return `${(type === 'exp' ? '-' : '+')} ${int}.${dec}`
+
+  };
+
 
   return {
     getInput: function() {
@@ -169,7 +197,7 @@ var UIController = (function() {
         html = `<div class="item clearfix" id="inc-${obj.id}">
                     <div class="item__description">${obj.description}</div>
                     <div class="right clearfix">
-                        <div class="item__value">${obj.value}</div>
+                        <div class="item__value">${formatNumber(obj.value, type)}</div>
                         <div class="item__delete">
                             <button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button>
                         </div>
@@ -180,7 +208,7 @@ var UIController = (function() {
         html = `<div class="item clearfix" id="exp-${obj.id}">
              <div class="item__description">${obj.description}</div>
              <div class="right clearfix">
-                 <div class="item__value">${obj.value}</div>
+                 <div class="item__value">${formatNumber(obj.value, type)}</div>
                  <div class="item__percentage">21%</div>
                  <div class="item__delete">
                      <button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button>
@@ -229,10 +257,17 @@ var UIController = (function() {
     },
 
     displayBudget: function(obj) {
-
-      document.querySelector(DOMselectors.budgetLabel).textContent = obj.budget;
-      document.querySelector(DOMselectors.incomeLabel).textContent = obj.totalInc;
-      document.querySelector(DOMselectors.expenseLabel).textContent = obj.totalExp;
+      var type
+      if(obj.budget === 0) {
+        type = obj.budget.toFixed(2) 
+      } else if(obj.budget > 0) {
+        type = formatNumber(obj.budget, 'inc');
+      } else {
+        type = formatNumber(obj.budget, 'exp');
+      }
+      document.querySelector(DOMselectors.budgetLabel).textContent = type
+      document.querySelector(DOMselectors.incomeLabel).textContent = formatNumber(obj.totalInc, "inc");
+      document.querySelector(DOMselectors.expenseLabel).textContent = formatNumber(obj.totalExp, "exp");
       
       if(obj.percentage > 0) {
         document.querySelector(DOMselectors.percentageLabel).textContent = `${obj.percentage}%`;
@@ -261,6 +296,7 @@ var UIController = (function() {
       })
     },
 
+    
     getDOMselectors: function() {
       return DOMselectors
     }
