@@ -392,6 +392,8 @@ var controller = (function(budgetCtrl, UICtrl) {
 
      //6. calculate & update the percentages
      updatePercentages();
+    } else {
+      alert("Please add a description & value add.")
     }
   }
 
