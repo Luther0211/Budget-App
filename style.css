@@ -277,18 +277,27 @@ h2 {
 .unpaid:hover .item__description { font-weight: 900; }
 
 .info {
-     font-size: 16px;
-     text-align: center;
-     color: #F7F7F7;
-     background-color: #28B9B5;
-     padding: 5px 0;
+    font-size: 16px;
+    text-align: center;
+    color: #F7F7F7;
+    background-color: #28B9B5;
+    padding: 5px 0;
 }
+
+.nameTag {
+    font-weight: 600;
+    text-decoration: none;
+    color: #F7F7F7;
+} 
 
 .link {
     text-decoration: none;
     color: #F7F7F7;
     transition: all .3s;
 }
+
+/* 
+
 
 .link > i {
     color: #444;
@@ -304,8 +313,4 @@ h2 {
     transition: .3s;
 }
 
-.nameTag {
-    font-weight: 600;
-    text-decoration: none;
-    color: #F7F7F7;
-}
+*/
