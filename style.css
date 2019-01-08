@@ -293,24 +293,9 @@ h2 {
 .link {
     text-decoration: none;
     color: #F7F7F7;
-    transition: all .3s;
+    transition: all .15s;
 }
 
-/* 
-
-
-.link > i {
-    color: #444;
+.link:hover {
+    color: rgb(56, 56, 56);
 }
-
-.link:hover > i{
-    color: #F7F7F7;
-    transition: .3s;
-}
-
-.link:not(:hover) > i{
-    color: #444;
-    transition: .3s;
-}
-
-*/
