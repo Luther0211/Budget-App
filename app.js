@@ -365,7 +365,7 @@ var controller = (function(budgetCtrl, UICtrl) {
 
     //2. Read them from the budget controller
     var percentages = budgetCtrl.getPercentages();
-    console.log(percentages)
+    //console.log(percentages)
     //3. Display the percentages in the UI
     UICtrl.displayPercentages(percentages);
   }
@@ -375,7 +375,7 @@ var controller = (function(budgetCtrl, UICtrl) {
 
     //1. Get input field Data
      input = UICtrl.getInput()
-    console.log(input)
+    //console.log(input)
 
     if (input.description !== "" && !isNaN(input.value) && input.value > 0 ) {
       //2. Add the item to budget controller
@@ -425,7 +425,7 @@ var controller = (function(budgetCtrl, UICtrl) {
 
   return {
     init: function() {
-      console.log("Application has started.");
+      //console.log("Application has started.");
       setupEventListeners();
       UICtrl.displayDate();
       UICtrl.displayBudget({
